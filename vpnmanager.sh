@@ -224,3 +224,5 @@ else
     firstsetup # If it is it goes through the firstsetup function first...
     main # ...and then triggers the main function
 fi
+
+# a

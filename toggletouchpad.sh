@@ -9,3 +9,5 @@ then
 else
     gnome-terminal -e $HOME/Coding-Projects/QOLbashscripts/toggletouchpad_error.sh
 fi
+
+# a
