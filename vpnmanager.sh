@@ -54,11 +54,6 @@ current_protocol=udp
 # Switch between normal-looking error messages and more casual ones.
 # normal_errors=on for normal-looking, normal_errors=off for casual mode.
 normal_errors=on
-
-# If you want, you can completely skip the connection selection screen
-# for connecting (NOT disconnecting). You MUST however specify a connection here.
-skip_connection_selection_con=off
-# connection_to_connect=put-your.connection.here
 "
     echo "$DEFAULT_CONFIG" > "$CONFIG_FILE"
 
