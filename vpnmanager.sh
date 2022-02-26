@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# Arrays for the casual errors
 declare -A abnormalerrorsarr=(
     [01]="Bro, there is no VPN active"
     [02]="Hey, did you even write anything?"
@@ -7,6 +8,8 @@ declare -A abnormalerrorsarr=(
     [04]="Dude, do you wanna choose a valid option?"
     [05]="Did you remember to register your VPN connections? (Manage -> Add VPN)"
 )
+
+# Arrays for normal errors
 declare -A normalerrorsarr=(
     [01]="No VPN active"
     [02]="No choice recieved"
@@ -16,6 +19,8 @@ declare -A normalerrorsarr=(
 )
 
 error () {
+    # If the config says normal errors are off, then casual errors are enabled.
+    # Otherwise, normal errors are enabled.
     if [[ "$normalerrors" == "off" ]]; then
         echo "Error (Code: ${1} - ${abnormalerrorsarr[$1]})"
     else
@@ -26,12 +31,15 @@ error () {
 firstsetup () {
     echo "Preparing first time setup..."
 
+    # Creates the config folder
     mkdir -p "$HOME/.config/vpnmanager"
     cd "$HOME/.config/vpnmanager" || exit 2
 
+    # Creates the actual config file and declares the variable for it
     touch config.conf
     config_file="$HOME/.config/vpnmanager/config.conf"
 
+    # A default config
     default_config="# A default config file for
 # this script. Not much here yet.
 
@@ -42,6 +50,7 @@ current_protocol=udp
 # normal_errors=on for normal-looking, normal_errors=off for casual mode.
 normal_errors=on
 "
+    # Applying the default config to the config file
     echo "$default_config" > "$config_file"
 
     clear
@@ -49,7 +58,7 @@ normal_errors=on
 
 # Main menu function
 mainmenu () {    
-    printf "What would you like to do?\n\n[0] Connect\n[1] Disconnect\n[2] Manager\n[3] Exit\n\n"
+    printf "What would you like to do?\n\n[0] Connect\n[1] Disconnect\n[2] Manage\n[3] Exit\n\n"
     read -r menuchoice
 
     if [[ "${menuchoice}" == "0" ]]; then
@@ -72,11 +81,10 @@ mainmenu () {
 
 # Function for connecting to the VPN
 connectmenu () {
+    # If there is any vpns with the current protocol registered, show the vpn choice menu.
+    # Otherwise, throw error 05
     if [[ -n "$(nmcli con show | grep vpn | grep "$currentprotocol")" ]]; then
-        echo ""
-        echo "Select one of the following: "
-        echo -e "$(nmcli con show | grep vpn | grep "$currentprotocol")\n"
-
+        printf "\nSelect one of the following:\n%s\n\n" "$(nmcli con show | grep vpn | grep "$currentprotocol")"
         read -r vpnchoice
 
         if [[ -z "${vpnchoice}" ]]; then
@@ -87,6 +95,7 @@ connectmenu () {
         fi
     else
         error "05"
+        exit
     fi 
 }
 
@@ -95,10 +104,7 @@ disconnectmenu () {
         error "01"
         exit 3
     else
-        echo ""
-        echo "Select one of the following: "
-        echo -e "$(nmcli con show --active | grep vpn)\n"
-
+        printf "\nSelect one of the following:\n%s\n" "$(nmcli con show --active | grep vpn)\n"
         read -r vpnchoicedis
         
         if [[ -z "${vpnchoicedis}" ]]; then
@@ -141,14 +147,13 @@ optionsmenu () {
 
 # All the options
 addvpn () {
+    printf "\n"
     read -r -e -p "Enter the file path: " ovpnfile
     nmcli con import type openvpn file "${ovpnfile}"
 }
 
 rmvpn () {
-    echo "Select one of the following:"
-    echo -e "$(nmcli con show | grep vpn)\n"
-
+    printf "\nSelect one of the following:\n%s\n\n" "$(nmcli con show | grep vpn)"
     read -r connectionfordelete
 
     if [[ "${connectionfordelete}" == *".udp"* ]] || [[ "${connectionfordelete}" == *".tcp"* ]]; then
@@ -159,34 +164,42 @@ rmvpn () {
 }
 
 chusername () {
-    echo "Select one of the following:"
-    echo -e "$(nmcli con show | grep vpn)\n"
-
+    printf "\nSelect one of the following:\n%s\n\n" "$(nmcli con show | grep vpn)"
     read -r confornamechange
 
-    echo ""
-    read -r -p "Enter the new username: " newusername
-    nmcli con modify "${confornamechange}" vpn.user-name "${newusername}"
+    if [[ -n "${confornamechange}" ]]; then
+        printf "\n"
+        read -r -p "Enter the new username: " newusername
+
+        if [[ -n "${newusername}" ]]; then
+            nmcli con modify "${confornamechange}" vpn.user-name "${newusername}"
+        else
+            error "02"
+            exit
+        fi
+    else
+        error "02"
+        exit
+    fi
+
+    optionsmenu
 }
 
 chpasswd () {
-    echo "Select one of the following:"
-    echo -e "$(nmcli con show | grep vpn)\n"
+    printf "\nSelect one of the following:\n%s\n\n" "$(nmcli con show | grep vpn)"
+    read -r connectionfordelete
 
-    read -r CONFORPASSCHANGE
+    read -r conforpasschange
 
-    echo ""
+    printf "\n"
     read -r -sp "Enter the new password: " newpassword
-    nmcli con modify "${CONFORPASSCHANGE}" vpn.secrets "password=${newpassword}"
-    echo ""
+    nmcli con modify "${conforpasschange}" vpn.secrets "password=${newpassword}"
+    
+    optionsmenu
 }
 
 chprotocol () {
-    echo ""
-    echo "Select one of the following: "
-    echo "[0] UDP"
-    echo -e "[1] TCP\n"
-
+    printf "\nSelect one of the following:\n\n[0] UDP\n[1] TCP\n[2] Back\n\n"
     read -r protocolchoice
 
     if [[ "${protocolchoice}" == "0" ]]; then
@@ -201,10 +214,14 @@ chprotocol () {
         elif [[ "${currentprotocol}" == "tcp" ]]; then
             sed -i 's/current_protocol=tcp/current_protocol=tcp/' "$HOME/.config/vpnmanager/config.conf"
         fi
+    elif [[ "${protocolchoice}" == "2" ]]; then
+        optionschoice
     else
         error "02"
         exit 22
     fi
+
+    optionsmenu
 }
 
 # The exit function, meant for a normal exit
