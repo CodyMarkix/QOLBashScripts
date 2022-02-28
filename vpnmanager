@@ -1,24 +1,23 @@
 #!/usr/bin/env bash
 
-# Arrays for the casual errors
-declare -A abnormalerrorsarr=(
-    [01]="Bro, there is no VPN active"
-    [02]="Hey, did you even write anything?"
-    [03]="Woah buddy, we're managing VPNs right now"
-    [04]="Dude, do you wanna choose a valid option?"
-    [05]="Did you remember to register your VPN connections? (Manage -> Add VPN)"
-)
-
-# Arrays for normal errors
-declare -A normalerrorsarr=(
-    [01]="No VPN active"
-    [02]="No choice recieved"
-    [03]="Not a VPN connection"
-    [04]="Valid option not selected"
-    [05]="No valid VPN connections registered. (Manage -> Add VPN)"
-)
-
 error () {
+    # Arrays for the casual errors
+    declare -A abnormalerrorsarr=(
+        [01]="Bro, there is no VPN active"
+        [02]="Hey, did you even write anything?"
+        [03]="Woah buddy, we're managing VPNs right now"
+        [04]="Dude, do you wanna choose a valid option?"
+        [05]="Did you remember to register your VPN connections? (Manage -> Add VPN)"
+    )
+
+    # Arrays for normal errors
+    declare -A normalerrorsarr=(
+        [01]="No VPN active"
+        [02]="No choice recieved"
+        [03]="Not a VPN connection"
+        [04]="Valid option not selected"
+        [05]="No valid VPN connections registered. (Manage -> Add VPN)"
+    )
     # If the config says normal errors are off, then casual errors are enabled.
     # Otherwise, normal errors are enabled.
     if [[ "$normalerrors" == "off" ]]; then
@@ -53,6 +52,12 @@ normal_errors=on
     # Applying the default config to the config file
     echo "$default_config" > "$config_file"
 
+    clear
+}
+
+update () {
+    # Nothing here yet! Working on it as of pushing this commit though!
+    printf "\e"
     clear
 }
 
@@ -232,6 +237,9 @@ exitfunc () {
 
 
 main () {
+    # Checks for updates and if there are, applies them
+    update
+
     # Checking if this is the first time you're running this script
     if [ -f "$HOME/.config/vpnmanager/config.conf" ]; then
         config_file="$HOME/.config/vpnmanager/config.conf" # If not, it declares the var for the config file...
