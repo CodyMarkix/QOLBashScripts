@@ -37,6 +37,6 @@ DEBs / PKGBUILDs / RPMs on my to-do list!
 
 ## To-do list
 
-- [ ] Add support for more desktop environments in `toggletouchpad`
+- [x] Add support for more desktop environments in `toggletouchpad`
 - [ ] Create DEBs / PKGBUILDs / RPMs
 - [ ] Add automatic updates (Optional updates of course!)
