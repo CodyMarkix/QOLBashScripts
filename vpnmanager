@@ -186,8 +186,6 @@ chusername () {
 
 chpasswd () {
     printf "\nSelect one of the following:\n%s\n\n" "$(nmcli con show | grep vpn)"
-    read -r connectionfordelete
-
     read -r conforpasschange
 
     printf "\n"

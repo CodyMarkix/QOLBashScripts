@@ -19,7 +19,7 @@ Download this repository.
 git clone https://github.com/CodyMarkix/QOLBashScripts
 ```
 
-Then copy the path to the folder (including the folder!) and add it to path using your favorite editor.
+Then copy the path to the folder (including the folder!) and add it to path in your .bash/zsh/fish/whateverrc using your favorite editor.
 
 ```bash
 export PATH="$PATH:/path/to/the/cloned/repo"
