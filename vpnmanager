@@ -31,12 +31,12 @@ firstsetup () {
     echo "Preparing first time setup..."
 
     # Creates the config folder
-    mkdir -p "$HOME/.config/vpnmanager"
-    cd "$HOME/.config/vpnmanager" || exit 2
+    mkdir -p "$HOME/.config/qolbashscripts/vpnmanager"
+    cd "$HOME/.config/qolbashscripts/vpnmanager" || exit 2
 
     # Creates the actual config file and declares the variable for it
     touch config.conf
-    config_file="$HOME/.config/vpnmanager/config.conf"
+    config_file="$HOME/.config/qolbashscripts/vpnmanager/config.conf"
 
     # A default config
     default_config="# A default config file for
@@ -52,12 +52,6 @@ normal_errors=on
     # Applying the default config to the config file
     echo "$default_config" > "$config_file"
 
-    clear
-}
-
-update () {
-    # Nothing here yet! Working on it as of pushing this commit though!
-    printf "\e"
     clear
 }
 
@@ -208,13 +202,13 @@ chprotocol () {
     read -r protocolchoice
 
     if [[ "${protocolchoice}" == "0" ]]; then
-        if [[ "${}" == "udp" ]]; then
+        if [[ "${currentprotocol}" == "udp" ]]; then
             sed -i 's/current_protocol=udp/current_protocol=udp/' "$HOME/.config/vpnmanager/config.conf"
         elif [[ "${currentprotocol}" == "tcp" ]]; then
             sed -i 's/current_protocol=tcp/current_protocol=udp/' "$HOME/.config/vpnmanager/config.conf"
         fi
     elif [[ "${protocolchoice}" == "1" ]]; then
-        if [[ "${}" == "udp" ]]; then
+        if [[ "${currentprotocol}" == "udp" ]]; then
             sed -i 's/current_protocol=udp/current_protocol=tcp/' "$HOME/.config/vpnmanager/config.conf"
         elif [[ "${currentprotocol}" == "tcp" ]]; then
             sed -i 's/current_protocol=tcp/current_protocol=tcp/' "$HOME/.config/vpnmanager/config.conf"
@@ -237,12 +231,9 @@ exitfunc () {
 
 
 main () {
-    # Checks for updates and if there are, applies them
-    update
-
     # Checking if this is the first time you're running this script
-    if [ -f "$HOME/.config/vpnmanager/config.conf" ]; then
-        config_file="$HOME/.config/vpnmanager/config.conf" # If not, it declares the var for the config file...
+    if [ -f "$HOME/.config/qolbashscripts/vpnmanager/config.conf" ]; then
+        config_file="$HOME/.config/qolbashscripts/vpnmanager/config.conf" # If not, it declares the var for the config file...
         
         if [[ "$(grep current_protocol "$config_file")" == "current_protocol=udp" ]]; then # ...goes through a bunch of config read -rs...
             currentprotocol="udp"

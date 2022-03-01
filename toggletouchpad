@@ -1,11 +1,53 @@
 #!/usr/bin/env bash
-if [[ "$(gsettings get org.gnome.desktop.peripherals.touchpad send-events)" == "'enabled'" ]];
-then
-    gsettings set org.gnome.desktop.peripherals.touchpad send-events 'disabled'
 
-elif [[ "$(gsettings get org.gnome.desktop.peripherals.touchpad send-events)" == "'disabled'" ]];
-then
-    gsettings set org.gnome.desktop.peripherals.touchpad send-events 'enabled'
-else
-    gnome-terminal -e $HOME/Coding-Projects/QOLbashscripts/toggletouchpad_error.sh
-fi
+errorscript="$HOME/Coding-Projects/QOLbashscripts/toggletouchpad_error.sh"
+
+firstsetup () {
+    printf "Preparing first time setup...\n"
+    
+    mkdir -p "$HOME/.config/qolbashscripts/toggletouchpad"
+    cd "$HOME/.config/qolbashscripts/toggletouchpad" || exit 2
+
+
+    printf "%s\n\nPlease enter the id of your touchpad.\nThis has to be done only once.\n" "$(xinput list)"
+    read -r touchpadid
+    
+    touch config.conf
+    config_file="$HOME/.config/qolbashscripts/toggletouchpad/config.conf"
+
+    default_config="# Default config for the toggletouchpad script.
+# Only really necessary for the device id right now
+# but I might add more later.
+# Check out the GitHub repo https://github.com/CodyMarkix/QOLBashScripts
+
+touchpadid=${touchpadid}
+"
+    echo "${default_config}" > "${config_file}"
+    cd "$scriptdir" || return
+}
+
+toggle () {
+    if [[ "$(xinput --list-props 12 | grep "Device Enabled")" == "	Device Enabled (155):	1" ]];
+    then
+        xinput disable "$(grep touchpadid "${config_file}" | sed 's/touchpadid=//g')"
+
+    elif [[ "$(xinput --list-props 12 | grep "Device Enabled")" == "	Device Enabled (155):	0" ]];
+    then
+        xinput enable "$(grep touchpadid "${config_file}" | sed 's/touchpadid=//g')"
+    else
+         gnome-terminal -e "${errorscript}" || konsole -e "${errorscript}" || xfce4-terminal -e "${errorscript}"
+    fi
+}
+
+main () {
+    scriptdir="$(pwd)"
+
+    if [ -f "$HOME/.config/qolbashscripts/toggletouchpad/config.conf" ]; then
+        config_file="$HOME/.config/qolbashscripts/toggletouchpad/config.conf"
+        toggle
+    else
+        firstsetup
+    fi
+}
+
+main
