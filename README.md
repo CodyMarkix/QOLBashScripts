@@ -8,7 +8,7 @@ Perhaps I'll be adding some more here soon.
 
 ## Current list of scripts and what they do:
 
-- toggletouchpad - Toggles the touchpad (Currently only supports GNOME! Support for more DE's/WM's coming very soon!)
+- toggletouchpad - Toggles the touchpad
 - vpnmanager - A CLI manager for VPNs
 
 ## "Installation" process
