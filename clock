@@ -1,0 +1,263 @@
+#!/usr/bin/env bash
+
+# ---------------------------------
+#  |                             |
+#  |           WARNING           |
+#  |                             |
+#  |  This script is incomplete  |
+#  |   and won't work properly   |
+# ---------------------------------
+
+firstsetup () {
+    echo "Preparing first time setup..."
+
+    # Creates the config folder
+    mkdir -p "$HOME/.config/qolbashscripts/clock"
+    cd "$HOME/.config/qolbashscripts/clock" || exit 2
+
+    # Creates the actual config file and declares the variable for it
+    touch config.conf
+    config_file="$HOME/.config/qolbashscripts/clock/config.conf"
+    config_folder="$HOME/.config/qolbashscripts/clock"
+
+    # A default config
+    default_config="# A default config file for
+# the clock script. Check out the GitHub repo.
+# https://github.com/CodyMarkix/QOLBashScripts
+
+# The frames of the animated clock
+frame001=\"asciiart/frame1\"
+frame002=\"asciiart/frame2\"
+frame003=\"asciiart/frame3\"
+frame004=\"asciiart/frame4\"
+frame005=\"asciiart/frame5\"
+frame006=\"asciiart/frame6\"
+frame007=\"asciiart/frame7\"
+frame008=\"asciiart/frame8\"
+frame009=\"asciiart/frame9\"
+frame010=\"asciiart/frame10\"
+
+# If anyone
+frame011=\"asciiart/frame11\"
+frame012=\"asciiart/frame12\"
+frame013=\"asciiart/frame13\"
+frame014=\"asciiart/frame14\"
+frame015=\"asciiart/frame15\"
+frame016=\"asciiart/frame16\"
+frame017=\"asciiart/frame17\"
+frame018=\"asciiart/frame18\"
+frame019=\"asciiart/frame19\"
+
+# knows how
+frame020=\"asciiart/frame20\"
+frame021=\"asciiart/frame21\"
+frame022=\"asciiart/frame22\"
+frame023=\"asciiart/frame23\"
+frame024=\"asciiart/frame24\"
+frame025=\"asciiart/frame25\"
+frame026=\"asciiart/frame26\"
+frame027=\"asciiart/frame27\"
+frame028=\"asciiart/frame28\"
+frame029=\"asciiart/frame29\"
+
+# to manage
+frame030=\"asciiart/frame30\"
+frame031=\"asciiart/frame31\"
+frame032=\"asciiart/frame32\"
+frame033=\"asciiart/frame33\"
+frame034=\"asciiart/frame34\"
+frame035=\"asciiart/frame35\"
+frame036=\"asciiart/frame36\"
+frame037=\"asciiart/frame37\"
+frame038=\"asciiart/frame38\"
+frame039=\"asciiart/frame39\"
+
+# this better
+frame040=\"asciiart/frame40\"
+frame041=\"asciiart/frame41\"
+frame042=\"asciiart/frame42\"
+frame043=\"asciiart/frame43\"
+frame044=\"asciiart/frame44\"
+frame045=\"asciiart/frame45\"
+frame046=\"asciiart/frame46\"
+frame047=\"asciiart/frame47\"
+frame048=\"asciiart/frame48\"
+frame049=\"asciiart/frame49\"
+
+# please
+frame050=\"asciiart/frame50\"
+frame051=\"asciiart/frame51\"
+frame052=\"asciiart/frame52\"
+frame053=\"asciiart/frame53\"
+frame054=\"asciiart/frame54\"
+frame056=\"asciiart/frame55\"
+frame056=\"asciiart/frame56\"
+frame057=\"asciiart/frame57\"
+frame058=\"asciiart/frame58\"
+frame059=\"asciiart/frame59\"
+
+# message me on reddit - u/Hplr63 :(
+frame060=\"asciiart/frame60\"
+frame061=\"asciiart/frame61\"
+frame062=\"asciiart/frame62\"
+frame063=\"asciiart/frame63\"
+frame064=\"asciiart/frame64\"
+"
+    # Applying the default config to the config file
+    echo "$default_config" > "$config_file"
+
+    mkdir -p "$HOME/.config/qolbashscripts/clock/asciiart"
+    cd "$HOME/.config/qolbashscripts/clock/asciiart" || exit 2
+
+    touch frame1 && touch frame2 && touch frame3 && touch frame4 && touch frame5 && touch frame6
+    touch frame7 && touch frame8 && touch frame9 && touch frame10 && touch frame11 && touch frame12
+
+}
+
+mainmenu () {
+    while :
+    do
+        if [[ "$(date +%k)" == "0" ]] || [[ "$(date +%k)" == "12" ]]; then
+            if (( 0 <= "$(date +%m)" && "$(date +%m)" <= 9 )); then
+                cat "${config_folder}/${frame1}"
+            fi
+        fi
+
+        if [[ "$(date +%k)" == "1" ]] || [[ "$(date +%k)" == "13" ]]; then
+            cat "${config_folder}/${frame9}"
+        fi
+
+        if [[ "$(date +%k)" == "2" ]] || [[ "$(date +%k)" == "14" ]]; then
+            cat "${config_folder}/${frame17}"
+        fi
+
+        if [[ "$(date +%k)" == "3" ]] || [[ "$(date +%k)" == "15" ]]; then
+            cat "${config_folder}/${frame25}"
+        fi
+
+        if [[ "$(date +%k)" == "4" ]] || [[ "$(date +%k)" == "16" ]]; then
+            cat "${config_folder}/${frame33}"
+        fi
+
+        if [[ "$(date +%k)" == "5" ]] || [[ "$(date +%k)" == "17" ]]; then
+            cat "${config_folder}/${frame41}"
+        fi
+
+        if [[ "$(date +%k)" == "6" ]] || [[ "$(date +%k)" == "18" ]]; then
+            cat "${config_folder}/${frame49}"
+        fi
+
+        if [[ "$(date +%k)" == "7" ]] || [[ "$(date +%k)" == "19" ]]; then
+            cat "${config_folder}/${frame1}"
+        fi
+
+        if [[ "$(date +%k)" == "8" ]] || [[ "$(date +%k)" == "20" ]]; then
+            cat "${config_folder}/${frame9}"
+        fi
+
+        if [[ "$(date +%k)" == "9" ]] || [[ "$(date +%k)" == "21" ]]; then
+            cat "${config_folder}/${frame10}"
+        fi
+
+        if [[ "$(date +%k)" == "10" ]] || [[ "$(date +%k)" == "22" ]]; then
+            cat "${config_folder}/${frame11}"
+        fi
+
+        if [[ "$(date +%k)" == "11" ]] || [[ "$(date +%k)" == "23" ]]; then
+            cat "${config_folder}/${frame12}"
+        fi
+
+        printf "\nCurrent time: %s\nDate: %s\nTime Zone: %s" "$(date +%k:%M:%S)" "$(date "+%e-%m-%Y")" "UTC $(date +%:z)"
+        
+        sleep 1
+        clear
+    done
+}
+
+
+main () {
+    if [ -f "$HOME/.config/qolbashscripts/clock/config.conf" ]; then
+        config_file="$HOME/.config/qolbashscripts/clock/config.conf"
+        config_folder="$HOME/.config/qolbashscripts/clock"
+
+        frame1="$(grep frame001 "${config_file}" | sed 's/frame001=//g')"
+        frame2="$(grep frame002 "${config_file}" | sed 's/frame002=//g')"
+        frame3="$(grep frame003 "${config_file}" | sed 's/frame003=//g')"
+        frame4="$(grep frame004 "${config_file}" | sed 's/frame004=//g')"
+        frame5="$(grep frame005 "${config_file}" | sed 's/frame005=//g')"
+        frame6="$(grep frame006 "${config_file}" | sed 's/frame006=//g')"
+        frame7="$(grep frame007 "${config_file}" | sed 's/frame007=//g')"
+        frame8="$(grep frame008 "${config_file}" | sed 's/frame008=//g')"
+        frame9="$(grep frame009 "${config_file}" | sed 's/frame009=//g')"
+        
+        frame10="$(grep frame010 "${config_file}" | sed 's/frame010=//g')"
+        frame11="$(grep frame011 "${config_file}" | sed 's/frame011=//g')"
+        frame12="$(grep frame012 "${config_file}" | sed 's/frame012=//g')"
+        frame13="$(grep frame013 "${config_file}" | sed 's/frame013=//g')"
+        frame14="$(grep frame014 "${config_file}" | sed 's/frame014=//g')"
+        frame15="$(grep frame015 "${config_file}" | sed 's/frame015=//g')"
+        frame16="$(grep frame016 "${config_file}" | sed 's/frame016=//g')"
+        frame17="$(grep frame017 "${config_file}" | sed 's/frame017=//g')"
+        frame18="$(grep frame018 "${config_file}" | sed 's/frame018=//g')"
+        frame19="$(grep frame019 "${config_file}" | sed 's/frame019=//g')"
+        
+        frame20="$(grep frame020 "${config_file}" | sed 's/frame020=//g')"
+        frame21="$(grep frame021 "${config_file}" | sed 's/frame021=//g')"
+        frame22="$(grep frame022 "${config_file}" | sed 's/frame022=//g')"
+        frame23="$(grep frame023 "${config_file}" | sed 's/frame023=//g')"
+        frame24="$(grep frame024 "${config_file}" | sed 's/frame024=//g')"
+        frame25="$(grep frame025 "${config_file}" | sed 's/frame025=//g')"
+        frame26="$(grep frame026 "${config_file}" | sed 's/frame026=//g')"
+        frame27="$(grep frame027 "${config_file}" | sed 's/frame027=//g')"
+        frame28="$(grep frame028 "${config_file}" | sed 's/frame028=//g')"
+        frame29="$(grep frame029 "${config_file}" | sed 's/frame029=//g')"
+        
+        frame30="$(grep frame030 "${config_file}" | sed 's/frame030=//g')"
+        frame31="$(grep frame031 "${config_file}" | sed 's/frame031=//g')"
+        frame32="$(grep frame032 "${config_file}" | sed 's/frame032=//g')"
+        frame33="$(grep frame033 "${config_file}" | sed 's/frame033=//g')"
+        frame34="$(grep frame034 "${config_file}" | sed 's/frame034=//g')"
+        frame35="$(grep frame035 "${config_file}" | sed 's/frame035=//g')"
+        frame36="$(grep frame036 "${config_file}" | sed 's/frame036=//g')"
+        frame37="$(grep frame037 "${config_file}" | sed 's/frame037=//g')"
+        frame38="$(grep frame038 "${config_file}" | sed 's/frame038=//g')"
+        frame39="$(grep frame039 "${config_file}" | sed 's/frame039=//g')"
+
+        frame40="$(grep frame040 "${config_file}" | sed 's/frame040=//g')"
+        frame41="$(grep frame041 "${config_file}" | sed 's/frame041=//g')"
+        frame42="$(grep frame042 "${config_file}" | sed 's/frame042=//g')"
+        frame43="$(grep frame043 "${config_file}" | sed 's/frame043=//g')"
+        frame44="$(grep frame044 "${config_file}" | sed 's/frame044=//g')"
+        frame45="$(grep frame045 "${config_file}" | sed 's/frame045=//g')"
+        frame46="$(grep frame046 "${config_file}" | sed 's/frame046=//g')"
+        frame47="$(grep frame047 "${config_file}" | sed 's/frame047=//g')"
+        frame48="$(grep frame048 "${config_file}" | sed 's/frame048=//g')"
+        frame49="$(grep frame049 "${config_file}" | sed 's/frame049=//g')"
+
+        frame50="$(grep frame050 "${config_file}" | sed 's/frame050=//g')"
+        frame51="$(grep frame051 "${config_file}" | sed 's/frame051=//g')"
+        frame52="$(grep frame052 "${config_file}" | sed 's/frame052=//g')"
+        frame53="$(grep frame053 "${config_file}" | sed 's/frame053=//g')"
+        frame54="$(grep frame054 "${config_file}" | sed 's/frame054=//g')"
+        frame55="$(grep frame055 "${config_file}" | sed 's/frame055=//g')"
+        frame56="$(grep frame056 "${config_file}" | sed 's/frame056=//g')"
+        frame57="$(grep frame057 "${config_file}" | sed 's/frame057=//g')"
+        frame58="$(grep frame058 "${config_file}" | sed 's/frame058=//g')"
+        frame59="$(grep frame059 "${config_file}" | sed 's/frame059=//g')"
+
+        frame60="$(grep frame060 "${config_file}" | sed 's/frame060=//g')"
+        frame61="$(grep frame061 "${config_file}" | sed 's/frame061=//g')"
+        frame62="$(grep frame062 "${config_file}" | sed 's/frame062=//g')"
+        frame63="$(grep frame063 "${config_file}" | sed 's/frame063=//g')"
+        frame64="$(grep frame064 "${config_file}" | sed 's/frame064=//g')"
+
+        clear
+        mainmenu
+
+    else
+        firstsetup
+        echo "a"
+    fi
+}
+
+main
