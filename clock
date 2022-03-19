@@ -117,54 +117,59 @@ frame064=\"asciiart/frame64\"
 mainmenu () {
     while :
     do
-        if [[ "$(date +%k)" == "0" ]] || [[ "$(date +%k)" == "12" ]]; then
-            if (( 0 <= "$(date +%m)" && "$(date +%m)" <= 9 )); then
-                cat "${config_folder}/${frame1}"
+        if [[ "$(date +%k)" == "00" ]] || [[ "$(date +%k)" == "12" ]]; then
+            if [[ "$(date +%M)" == "00" ]] || [[ "$(date +%M)" == "01" ]] || [[ "$(date +%M)" == "02" ]] || [[ "$(date +%M)" == "03" ]] || [[ "$(date +%M)" == "04" ]]; then
+                cat "${config_folder}/asciiart/frame1"
+            
+            elif [[ "$(date +%M)" == "05" ]] || [[ "$(date +%M)" == "06" ]] || [[ "$(date +%M)" == "07" ]] || [[ "$(date +%M)" == "08" ]] || [[ "$(date +%M)" == "09" ]]; then
+                cat "${config_folder}/asciiart/frame2"
+            
+            elif [[ "$(date +%M)" == "10" ]] || [[ "$(date +%M)" == "11" ]] || [[ "$(date +%M)" == "12" ]] || [[ "$(date +%M)" == "13" ]] || [[ "$(date +%M)" == "14" ]]; then
+                cat "${config_folder}/asciiart/frame3"
+            
+            elif [[ "$(date +%M)" == "15" ]] || [[ "$(date +%M)" == "16" ]] || [[ "$(date +%M)" == "17" ]] || [[ "$(date +%M)" == "18" ]] || [[ "$(date +%M)" == "19" ]]; then
+                cat "${config_folder}/asciiart/frame4"
+
+            elif [[ "$(date +%M)" == "20" ]] || [[ "$(date +%M)" == "21" ]] || [[ "$(date +%M)" == "22" ]] || [[ "$(date +%M)" == "23" ]] || [[ "$(date +%M)" == "24" ]]; then
+                cat "${config_folder}/asciiart/frame5"
+            
+            elif [[ "$(date +%M)" == "25" ]] || [[ "$(date +%M)" == "26" ]] || [[ "$(date +%M)" == "27" ]] || [[ "$(date +%M)" == "28" ]] || [[ "$(date +%M)" == "29" ]]; then
+                cat "${config_folder}/asciiart/frame6"
+
+            elif [[ "$(date +%M)" == "30" ]] || [[ "$(date +%M)" == "31" ]] || [[ "$(date +%M)" == "32" ]] || [[ "$(date +%M)" == "33" ]] || [[ "$(date +%M)" == "34" ]]; then
+                cat "${config_folder}/asciiart/frame7"
+            
+            elif [[ "$(date +%M)" == "35" ]] || [[ "$(date +%M)" == "36" ]] || [[ "$(date +%M)" == "37" ]] || [[ "$(date +%M)" == "38" ]] || [[ "$(date +%M)" == "39" ]]; then
+                cat "${config_folder}/asciiart/frame8"
             fi
         fi
 
-        if [[ "$(date +%k)" == "1" ]] || [[ "$(date +%k)" == "13" ]]; then
-            cat "${config_folder}/${frame9}"
+        if [[ "$(date +%k)" == "01" ]] || [[ "$(date +%k)" == "02" ]] || [[ "$(date +%k)" == "13" ]] || [[ "$(date +%k)" == "14" ]]; then
+            cat "${config_folder}/asciiart/frame9"
         fi
 
-        if [[ "$(date +%k)" == "2" ]] || [[ "$(date +%k)" == "14" ]]; then
-            cat "${config_folder}/${frame17}"
+        if [[ "$(date +%k)" == "03" ]] || [[ "$(date +%k)" == "15" ]]; then
+            cat "${config_folder}/asciiart/frame17"
         fi
 
-        if [[ "$(date +%k)" == "3" ]] || [[ "$(date +%k)" == "15" ]]; then
-            cat "${config_folder}/${frame25}"
+        if [[ "$(date +%k)" == "04" ]] || [[ "$(date +%k)" == "05" ]] || [[ "$(date +%k)" == "16" ]] || [[ "$(date +%k)" == "17" ]]; then
+            cat "${config_folder}/asciiart/frame25"
         fi
 
-        if [[ "$(date +%k)" == "4" ]] || [[ "$(date +%k)" == "16" ]]; then
-            cat "${config_folder}/${frame33}"
+        if [[ "$(date +%k)" == "06" ]] || [[ "$(date +%k)" == "18" ]]; then
+            cat "${config_folder}asciiart/asciiartframe33"
         fi
 
-        if [[ "$(date +%k)" == "5" ]] || [[ "$(date +%k)" == "17" ]]; then
-            cat "${config_folder}/${frame41}"
+        if [[ "$(date +%k)" == "07" ]] || [[ "$(date +%k)" == "08" ]] || [[ "$(date +%k)" == "19" ]] || [[ "$(date +%k)" == "20" ]]; then
+            cat "${config_folder}/asciiart/frame41"
         fi
 
-        if [[ "$(date +%k)" == "6" ]] || [[ "$(date +%k)" == "18" ]]; then
-            cat "${config_folder}/${frame49}"
+        if [[ "$(date +%k)" == "09" ]] || [[ "$(date +%k)" == "21" ]]; then
+            cat "${config_folder}/asciiart/frame49"
         fi
 
-        if [[ "$(date +%k)" == "7" ]] || [[ "$(date +%k)" == "19" ]]; then
-            cat "${config_folder}/${frame1}"
-        fi
-
-        if [[ "$(date +%k)" == "8" ]] || [[ "$(date +%k)" == "20" ]]; then
-            cat "${config_folder}/${frame9}"
-        fi
-
-        if [[ "$(date +%k)" == "9" ]] || [[ "$(date +%k)" == "21" ]]; then
-            cat "${config_folder}/${frame10}"
-        fi
-
-        if [[ "$(date +%k)" == "10" ]] || [[ "$(date +%k)" == "22" ]]; then
-            cat "${config_folder}/${frame11}"
-        fi
-
-        if [[ "$(date +%k)" == "11" ]] || [[ "$(date +%k)" == "23" ]]; then
-            cat "${config_folder}/${frame12}"
+        if [[ "$(date +%k)" == "10" ]] || [[ "$(date +%k)" == "11" ]] || [[ "$(date +%k)" == "22" ]] || [[ "$(date +%k)" == "23" ]]; then
+            cat "${config_folder}/asciiart/frame57"
         fi
 
         printf "\nCurrent time: %s\nDate: %s\nTime Zone: %s" "$(date +%k:%M:%S)" "$(date "+%e-%m-%Y")" "UTC $(date +%:z)"
@@ -177,9 +182,13 @@ mainmenu () {
 
 main () {
     if [ -f "$HOME/.config/qolbashscripts/clock/config.conf" ]; then
+
+        printf "[...] Setting config variables\n"
         config_file="$HOME/.config/qolbashscripts/clock/config.conf"
         config_folder="$HOME/.config/qolbashscripts/clock"
+        printf "[OK] Set config variables"
 
+        printf "[...] Registering clock frames\n"
         frame1="$(grep frame001 "${config_file}" | sed 's/frame001=//g')"
         frame2="$(grep frame002 "${config_file}" | sed 's/frame002=//g')"
         frame3="$(grep frame003 "${config_file}" | sed 's/frame003=//g')"
@@ -189,7 +198,8 @@ main () {
         frame7="$(grep frame007 "${config_file}" | sed 's/frame007=//g')"
         frame8="$(grep frame008 "${config_file}" | sed 's/frame008=//g')"
         frame9="$(grep frame009 "${config_file}" | sed 's/frame009=//g')"
-        
+        printf "[OK] Registered 9/64 frames\n"
+
         frame10="$(grep frame010 "${config_file}" | sed 's/frame010=//g')"
         frame11="$(grep frame011 "${config_file}" | sed 's/frame011=//g')"
         frame12="$(grep frame012 "${config_file}" | sed 's/frame012=//g')"
@@ -200,7 +210,8 @@ main () {
         frame17="$(grep frame017 "${config_file}" | sed 's/frame017=//g')"
         frame18="$(grep frame018 "${config_file}" | sed 's/frame018=//g')"
         frame19="$(grep frame019 "${config_file}" | sed 's/frame019=//g')"
-        
+        printf "[...] Registered 19/64 frames\n"
+
         frame20="$(grep frame020 "${config_file}" | sed 's/frame020=//g')"
         frame21="$(grep frame021 "${config_file}" | sed 's/frame021=//g')"
         frame22="$(grep frame022 "${config_file}" | sed 's/frame022=//g')"
@@ -211,7 +222,8 @@ main () {
         frame27="$(grep frame027 "${config_file}" | sed 's/frame027=//g')"
         frame28="$(grep frame028 "${config_file}" | sed 's/frame028=//g')"
         frame29="$(grep frame029 "${config_file}" | sed 's/frame029=//g')"
-        
+        printf "[...] Registered 29/64 frames\n"
+
         frame30="$(grep frame030 "${config_file}" | sed 's/frame030=//g')"
         frame31="$(grep frame031 "${config_file}" | sed 's/frame031=//g')"
         frame32="$(grep frame032 "${config_file}" | sed 's/frame032=//g')"
@@ -222,6 +234,7 @@ main () {
         frame37="$(grep frame037 "${config_file}" | sed 's/frame037=//g')"
         frame38="$(grep frame038 "${config_file}" | sed 's/frame038=//g')"
         frame39="$(grep frame039 "${config_file}" | sed 's/frame039=//g')"
+        printf "[...] Registered 39/64 frames\n"
 
         frame40="$(grep frame040 "${config_file}" | sed 's/frame040=//g')"
         frame41="$(grep frame041 "${config_file}" | sed 's/frame041=//g')"
@@ -233,6 +246,7 @@ main () {
         frame47="$(grep frame047 "${config_file}" | sed 's/frame047=//g')"
         frame48="$(grep frame048 "${config_file}" | sed 's/frame048=//g')"
         frame49="$(grep frame049 "${config_file}" | sed 's/frame049=//g')"
+        printf "[...] Registered 49/64 frames\n"
 
         frame50="$(grep frame050 "${config_file}" | sed 's/frame050=//g')"
         frame51="$(grep frame051 "${config_file}" | sed 's/frame051=//g')"
@@ -244,12 +258,14 @@ main () {
         frame57="$(grep frame057 "${config_file}" | sed 's/frame057=//g')"
         frame58="$(grep frame058 "${config_file}" | sed 's/frame058=//g')"
         frame59="$(grep frame059 "${config_file}" | sed 's/frame059=//g')"
+        printf "[...] Registered 59/64 frames\n"
 
         frame60="$(grep frame060 "${config_file}" | sed 's/frame060=//g')"
         frame61="$(grep frame061 "${config_file}" | sed 's/frame061=//g')"
         frame62="$(grep frame062 "${config_file}" | sed 's/frame062=//g')"
         frame63="$(grep frame063 "${config_file}" | sed 's/frame063=//g')"
         frame64="$(grep frame064 "${config_file}" | sed 's/frame064=//g')"
+        printf "[OK] Registered all frames\n"
 
         clear
         mainmenu
