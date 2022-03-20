@@ -25,6 +25,10 @@ firstsetup () {
 # the clock script. Check out the GitHub repo.
 # https://github.com/CodyMarkix/QOLBashScripts
 
+# The format that the hours, minutes and seconds are displayed in.
+# The default/fallback option is 24-hour format
+hourformat=24
+
 # The frames of the animated clock
 frame001=\"asciiart/frame1\"
 frame002=\"asciiart/frame2\"
@@ -114,65 +118,74 @@ frame064=\"asciiart/frame64\"
 
 }
 
+checkmins () {
+    if [[ "$(date +%M)" == "00" ]] || [[ "$(date +%M)" == "01" ]] || [[ "$(date +%M)" == "02" ]] || [[ "$(date +%M)" == "03" ]] || [[ "$(date +%M)" == "04" ]] || [[ "$(date +%M)" == "05" ]]; then
+        cat "${config_folder}/asciiart/frame$1"
+    
+    elif [[ "$(date +%M)" == "06" ]] || [[ "$(date +%M)" == "07" ]] || [[ "$(date +%M)" == "08" ]] || [[ "$(date +%M)" == "09" ]]; then
+        cat "${config_folder}/asciiart/frame$2"
+    
+    elif [[ "$(date +%M)" == "10" ]] || [[ "$(date +%M)" == "11" ]] || [[ "$(date +%M)" == "12" ]] || [[ "$(date +%M)" == "13" ]] || [[ "$(date +%M)" == "14" ]] || [[ "$(date +%M)" == "15" ]]; then
+        cat "${config_folder}/asciiart/frame$3"
+    
+    elif [[ "$(date +%M)" == "16" ]] || [[ "$(date +%M)" == "17" ]] || [[ "$(date +%M)" == "18" ]] || [[ "$(date +%M)" == "19" ]]; then
+        cat "${config_folder}/asciiart/frame$4"
+    
+    elif [[ "$(date +%M)" == "20" ]] || [[ "$(date +%M)" == "21" ]] || [[ "$(date +%M)" == "22" ]] || [[ "$(date +%M)" == "23" ]] || [[ "$(date +%M)" == "24" ]] || [[ "$(date +%M)" == "25" ]]; then
+        cat "${config_folder}/asciiart/frame$5"
+
+    elif [[ "$(date +%M)" == "26" ]] || [[ "$(date +%M)" == "27" ]] || [[ "$(date +%M)" == "28" ]] || [[ "$(date +%M)" == "29" ]]; then
+        cat "${config_folder}/asciiart/frame$6"    
+    
+    elif [[ "$(date +%M)" == "30" ]] || [[ "$(date +%M)" == "31" ]] || [[ "$(date +%M)" == "32" ]] || [[ "$(date +%M)" == "33" ]] || [[ "$(date +%M)" == "34" ]] || [[ "$(date +%M)" == "35" ]]; then
+        cat "${config_folder}/asciiart/frame$7"
+
+    elif [[ "$(date +%M)" == "36" ]] || [[ "$(date +%M)" == "37" ]] || [[ "$(date +%M)" == "38" ]] || [[ "$(date +%M)" == "39" ]]; then
+        cat "${config_folder}/asciiart/frame$8"
+
+    elif [[ "$(date +%M)" == "40" ]] || [[ "$(date +%M)" == "41" ]] || [[ "$(date +%M)" == "42" ]] || [[ "$(date +%M)" == "43" ]] || [[ "$(date +%M)" == "44" ]] || [[ "$(date +%M)" == "45" ]]; then
+        cat "${config_folder}/asciiart/frame$9"
+
+    elif [[ "$(date +%M)" == "46" ]] || [[ "$(date +%M)" == "47" ]] || [[ "$(date +%M)" == "48" ]] || [[ "$(date +%M)" == "49" ]]; then
+        cat "${config_folder}/asciiart/frame${10}"
+
+    elif [[ "$(date +%M)" == "50" ]] || [[ "$(date +%M)" == "51" ]] || [[ "$(date +%M)" == "52" ]] || [[ "$(date +%M)" == "53" ]] || [[ "$(date +%M)" == "54" ]] || [[ "$(date +%M)" == "55" ]]; then
+        cat "${config_folder}/asciiart/frame${11}"
+    
+    elif [[ "$(date +%M)" == "56" ]] || [[ "$(date +%M)" == "57" ]] || [[ "$(date +%M)" == "58" ]] || [[ "$(date +%M)" == "59" ]]; then
+        cat "${config_folder}/asciiart/frame${12}"
+    fi
+}
+
 mainmenu () {
     while :
     do
         if [[ "$(date +%k)" == "00" ]] || [[ "$(date +%k)" == "12" ]]; then
-            if [[ "$(date +%M)" == "00" ]] || [[ "$(date +%M)" == "01" ]] || [[ "$(date +%M)" == "02" ]] || [[ "$(date +%M)" == "03" ]] || [[ "$(date +%M)" == "04" ]]; then
-                cat "${config_folder}/asciiart/frame1"
-            
-            elif [[ "$(date +%M)" == "05" ]] || [[ "$(date +%M)" == "06" ]] || [[ "$(date +%M)" == "07" ]] || [[ "$(date +%M)" == "08" ]] || [[ "$(date +%M)" == "09" ]]; then
-                cat "${config_folder}/asciiart/frame2"
-            
-            elif [[ "$(date +%M)" == "10" ]] || [[ "$(date +%M)" == "11" ]] || [[ "$(date +%M)" == "12" ]] || [[ "$(date +%M)" == "13" ]] || [[ "$(date +%M)" == "14" ]]; then
-                cat "${config_folder}/asciiart/frame3"
-            
-            elif [[ "$(date +%M)" == "15" ]] || [[ "$(date +%M)" == "16" ]] || [[ "$(date +%M)" == "17" ]] || [[ "$(date +%M)" == "18" ]] || [[ "$(date +%M)" == "19" ]]; then
-                cat "${config_folder}/asciiart/frame4"
+            checkmins 01 02 03 04 05 06 07 08
 
-            elif [[ "$(date +%M)" == "20" ]] || [[ "$(date +%M)" == "21" ]] || [[ "$(date +%M)" == "22" ]] || [[ "$(date +%M)" == "23" ]] || [[ "$(date +%M)" == "24" ]]; then
-                cat "${config_folder}/asciiart/frame5"
-            
-            elif [[ "$(date +%M)" == "25" ]] || [[ "$(date +%M)" == "26" ]] || [[ "$(date +%M)" == "27" ]] || [[ "$(date +%M)" == "28" ]] || [[ "$(date +%M)" == "29" ]]; then
-                cat "${config_folder}/asciiart/frame6"
+        elif [[ "$(date +%k)" == "01" ]] || [[ "$(date +%k)" == "02" ]] || [[ "$(date +%k)" == "13" ]] || [[ "$(date +%k)" == "14" ]]; then
+            checkmins 09 10 11 12 13 14 15 16
 
-            elif [[ "$(date +%M)" == "30" ]] || [[ "$(date +%M)" == "31" ]] || [[ "$(date +%M)" == "32" ]] || [[ "$(date +%M)" == "33" ]] || [[ "$(date +%M)" == "34" ]]; then
-                cat "${config_folder}/asciiart/frame7"
-            
-            elif [[ "$(date +%M)" == "35" ]] || [[ "$(date +%M)" == "36" ]] || [[ "$(date +%M)" == "37" ]] || [[ "$(date +%M)" == "38" ]] || [[ "$(date +%M)" == "39" ]]; then
-                cat "${config_folder}/asciiart/frame8"
-            fi
+        elif [[ "$(date +%k)" == "03" ]] || [[ "$(date +%k)" == "15" ]]; then
+            checkmins 17 18 19 20 21 22 23 24
+
+        elif [[ "$(date +%k)" == "04" ]] || [[ "$(date +%k)" == "05" ]] || [[ "$(date +%k)" == "16" ]] || [[ "$(date +%k)" == "17" ]]; then
+            checkmins 25 26 27 28 29 30 31 32
+
+        elif [[ "$(date +%k)" == "06" ]] || [[ "$(date +%k)" == "18" ]]; then
+            checkmins 33 34 35 36 37 38 39 40
+        
+        elif [[ "$(date +%k)" == "07" ]] || [[ "$(date +%k)" == "08" ]] || [[ "$(date +%k)" == "19" ]] || [[ "$(date +%k)" == "20" ]]; then
+            checkmins 41 42 43 44 45 46 47 48
+
+        elif [[ "$(date +%k)" == "09" ]] || [[ "$(date +%k)" == "21" ]]; then
+            checkmins 49 50 51 52 53 54 55 56
+
+        elif [[ "$(date +%k)" == "10" ]] || [[ "$(date +%k)" == "11" ]] || [[ "$(date +%k)" == "22" ]] || [[ "$(date +%k)" == "23" ]]; then
+            checkmins 57 58 59 60 61 62 63 64
         fi
 
-        if [[ "$(date +%k)" == "01" ]] || [[ "$(date +%k)" == "02" ]] || [[ "$(date +%k)" == "13" ]] || [[ "$(date +%k)" == "14" ]]; then
-            cat "${config_folder}/asciiart/frame9"
-        fi
-
-        if [[ "$(date +%k)" == "03" ]] || [[ "$(date +%k)" == "15" ]]; then
-            cat "${config_folder}/asciiart/frame17"
-        fi
-
-        if [[ "$(date +%k)" == "04" ]] || [[ "$(date +%k)" == "05" ]] || [[ "$(date +%k)" == "16" ]] || [[ "$(date +%k)" == "17" ]]; then
-            cat "${config_folder}/asciiart/frame25"
-        fi
-
-        if [[ "$(date +%k)" == "06" ]] || [[ "$(date +%k)" == "18" ]]; then
-            cat "${config_folder}asciiart/asciiartframe33"
-        fi
-
-        if [[ "$(date +%k)" == "07" ]] || [[ "$(date +%k)" == "08" ]] || [[ "$(date +%k)" == "19" ]] || [[ "$(date +%k)" == "20" ]]; then
-            cat "${config_folder}/asciiart/frame41"
-        fi
-
-        if [[ "$(date +%k)" == "09" ]] || [[ "$(date +%k)" == "21" ]]; then
-            cat "${config_folder}/asciiart/frame49"
-        fi
-
-        if [[ "$(date +%k)" == "10" ]] || [[ "$(date +%k)" == "11" ]] || [[ "$(date +%k)" == "22" ]] || [[ "$(date +%k)" == "23" ]]; then
-            cat "${config_folder}/asciiart/frame57"
-        fi
-
-        printf "\nCurrent time: %s\nDate: %s\nTime Zone: %s" "$(date +%k:%M:%S)" "$(date "+%e-%m-%Y")" "UTC $(date +%:z)"
+        printf "\nCurrent time: %s\nDate: %s\nTime Zone: %s" "$(${clockformat})" "$(date "+%e-%m-%Y")" "UTC $(date +%:z)"
         
         sleep 1
         clear
@@ -186,7 +199,16 @@ main () {
         printf "[...] Setting config variables\n"
         config_file="$HOME/.config/qolbashscripts/clock/config.conf"
         config_folder="$HOME/.config/qolbashscripts/clock"
-        printf "[OK] Set config variables"
+        if [[ "$(grep hourformat "${config_file}" | sed 's/hourformat=//g')" == "24" ]]; then
+            clockformat="date +%k:%M:%S"
+        elif [[ "$(grep hourformat "${config_file}" | sed 's/hourformat=//g')" == "12" ]]; then
+            clockformat="date +%I:%M:%S\ %p"
+        elif [[ "$(grep hourformat "${config_file}" | sed 's/hourformat=//g')" == "unix" ]]; then
+            clockformat="date +%s"
+        else
+            clockformat="date +%k:%M:%S"
+        fi
+        printf "[OK] Set config variables\n"
 
         printf "[...] Registering clock frames\n"
         frame1="$(grep frame001 "${config_file}" | sed 's/frame001=//g')"
