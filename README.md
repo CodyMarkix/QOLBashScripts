@@ -6,10 +6,12 @@ You can use the scripts as well if you want.
 
 Perhaps I'll be adding some more here soon.
 
-## Current list of scripts and what they do:
+## Current list of scripts and what they do
 
 - toggletouchpad - Toggles the touchpad
 - vpnmanager - A CLI manager for VPNs
+- clock - A CLI clock app
+- optifinedownloader - Automatically downloads the Minecraft mod OptiFine and extracts it as a Forge mod to ~/Desktop
 
 ## "Installation" process
 
