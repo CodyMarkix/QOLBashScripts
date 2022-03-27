@@ -161,10 +161,10 @@ mainmenu () {
     while :
     do
         if [[ "$(date +%k)" == "00" ]] || [[ "$(date +%k)" == "12" ]]; then
-            checkmins 01 02 03 04 05 06 07 08
+            checkmins 1 2 3 4 5 6 7 8
 
         elif [[ "$(date +%k)" == "01" ]] || [[ "$(date +%k)" == "02" ]] || [[ "$(date +%k)" == "13" ]] || [[ "$(date +%k)" == "14" ]]; then
-            checkmins 09 10 11 12 13 14 15 16
+            checkmins 9 10 11 12 13 14 15 16
 
         elif [[ "$(date +%k)" == "03" ]] || [[ "$(date +%k)" == "15" ]]; then
             checkmins 17 18 19 20 21 22 23 24
