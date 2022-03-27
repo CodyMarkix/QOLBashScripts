@@ -11,7 +11,7 @@ Perhaps I'll be adding some more here soon.
 - toggletouchpad - Toggles the touchpad
 - vpnmanager - A CLI manager for VPNs
 - clock - A CLI clock app
-- optifinedownloader - Automatically downloads the Minecraft mod OptiFine and extracts it as a Forge mod to ~/Desktop
+
 
 ## "Installation" process
 
